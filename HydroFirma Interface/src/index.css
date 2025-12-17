@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 20% 98%;
+    --foreground: 150 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 10%;
+
+    --primary: 158 64% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 158 30% 94%;
+    --secondary-foreground: 158 64% 25%;
+
+    --muted: 150 15% 92%;
+    --muted-foreground: 150 10% 45%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 38 92% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 150 20% 88%;
+    --input: 150 20% 88%;
+    --ring: 158 64% 32%;
+
+    --radius: 0.75rem;
+
+    /* Custom HydroFirma tokens */
+    --hydro-emerald: 158 64% 32%;
+    --hydro-emerald-light: 158 50% 45%;
+    --hydro-emerald-dark: 158 70% 22%;
+    --hydro-teal: 180 60% 40%;
+    --hydro-teal-light: 180 50% 55%;
+    --hydro-ocean: 200 70% 45%;
+    --hydro-amber: 38 92% 50%;
+    --hydro-amber-light: 38 85% 65%;
+    --hydro-leaf: 100 50% 45%;
+    --hydro-soil: 30 25% 30%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(158 64% 32%) 0%, hsl(180 60% 40%) 50%, hsl(200 70% 45%) 100%);
+    --gradient-nature: linear-gradient(180deg, hsl(158 50% 96%) 0%, hsl(150 20% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(158 30% 98%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(158 64% 32% / 0.15) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(158 64% 32% / 0.08);
+    --shadow-md: 0 4px 20px hsl(158 64% 32% / 0.12);
+    --shadow-lg: 0 8px 40px hsl(158 64% 32% / 0.16);
+    --shadow-glow: 0 0 40px hsl(158 64% 32% / 0.25);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 158 30% 8%;
+    --foreground: 150 20% 95%;
+
+    --card: 158 25% 12%;
+    --card-foreground: 150 20% 95%;
+
+    --popover: 158 25% 12%;
+    --popover-foreground: 150 20% 95%;
+
+    --primary: 158 55% 45%;
+    --primary-foreground: 158 30% 8%;
+
+    --secondary: 158 25% 18%;
+    --secondary-foreground: 158 40% 70%;
+
+    --muted: 158 20% 18%;
+    --muted-foreground: 150 15% 55%;
+
+    --accent: 38 85% 55%;
+    --accent-foreground: 38 92% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 158 25% 20%;
+    --input: 158 25% 20%;
+    --ring: 158 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .hydro-gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+
+  .hydro-card {
+    @apply bg-card rounded-2xl border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hydro-glow {
+    position: relative;
+  }
+
+  .hydro-glow::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: var(--gradient-glow);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .hydro-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
+  }
+}
